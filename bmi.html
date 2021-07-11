@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html data-ng-app="">
+<head>
+    <title>Lecture 3 Demo - Data Binding</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap -->
+    <link href="frameworks/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5
+    elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the
+    page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <h1>Health App</h1>
+        </div>
+        <div data ng-init = "numWt = 0; numHt = 0;"><!-- Initializing weight and height variables -->
+            <div class="row">
+                <strong>Enter your weight in kilograms:</strong>
+            </div>
+            <div class="row">
+                <input type="number" data-ng-model="numWt" /> <!-- Reads weight given -->
+            </div>
+            <div class="row">
+                <strong>Please enter your height in centimetres:</strong>
+            </div>
+            <div class="row">
+                <input type="number" data-ng-model="numHt" /><br /> <!-- Reads height given -->
+            </div>
+            <br />
+
+            <div class="row" data ng-model ="numBMI = (10000*numWt)/(numHt*numHt)" > <!-- computing BMI using their specific weight and height -->
+                Your BMI is: {{numBMI | number: 2}} <!-- Shows BMI within 2 decimals -->
+                <span class="alert alert-danger" role="alert" data ng-if="numBMI < 18.5">Underweight</span>
+                <span class="alert alert-success" role="alert" data ng-if="numBMI == 18.5 || numBMI > 18.5 && numBMI < 25 ">Normal</span>
+                <span class="alert alert-warning" role="alert" data ng-if="numBMI == 25 || numBMI > 25 && numBMI < 30">Overweight</span>
+                <span class="alert alert-danger" role="alert" data ng-if="numBMI > 30">Obese</span>
+                <!-- shows BMI range with an appropriate alert for the range they are in -->
+            </div>
+    </div>
+        </div>
+
+
+
+    <!-- jQuery – required for Bootstrap's JavaScript plugins) -->
+    <script src="frameworks/js/jquery.min.js"></script>
+    <!-- All Bootstrap plug-ins file -->
+    <script src="frameworks/js/bootstrap.min.js"></script>
+    <!-- Basic AngularJS -->
+    <script src="frameworks/js/angular.min.js"></script>
+</body>
+</html>
